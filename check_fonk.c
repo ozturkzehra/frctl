@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_fonk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fatmoztu <fatmoztu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zehra <zehra@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:57:31 by fatmoztu          #+#    #+#             */
-/*   Updated: 2025/03/17 18:59:01 by fatmoztu         ###   ########.fr       */
+/*   Updated: 2025/03/18 02:49:08 by zehra            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,19 @@ int	key_press(int keycode, t_fractol *fractol)
 	return (0);
 }
 
+int	cross_press(t_fractol *fractol)
+{
+	quit_fractol(fractol, "");
+	return (0);
+}
+
 int	mouse_press(int button, int x, int y, t_fractol *fractol)
 {
 	x = y;
 	y = x;
-	if (button == 4) // Scroll Up (Yakınlaştır)
+	if (button == 4)
 		fractol->scale *= 0.9;
-	if (button == 5) // Scroll Down (Uzaklaştır)
+	if (button == 5)
 		fractol->scale *= 1.1;
 	draw(fractol);
 	return (0);

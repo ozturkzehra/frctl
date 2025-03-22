@@ -6,7 +6,7 @@
 /*   By: fatmoztu <fatmoztu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:57:15 by fatmoztu          #+#    #+#             */
-/*   Updated: 2025/03/17 18:58:37 by fatmoztu         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:03:41 by fatmoztu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	print_usage(void)
 
 void	check_args(int ac, char **av, t_fractol *fractol)
 {
-	if (ac < 2)
-		print_usage();
+	if (ac < 2 || ac > 4)
+		(print_usage(), quit_fractol(fractol, ""));
 	if (ft_strcmp(av[1], "mandelbrot") == 0)
 	{
-		fractol->offset_x = -1.35;
-		fractol->offset_y = -1;
+		if (ac > 2)
+			(print_usage(), quit_fractol(fractol, ""));
 		fractol->choose = 1;
 		fractol->c_r = 0;
 		fractol->c_i = 0;
@@ -36,8 +36,10 @@ void	check_args(int ac, char **av, t_fractol *fractol)
 	else if (ft_strcmp(av[1], "julia") == 0)
 	{
 		fractol->choose = 2;
-		if (ac == 4)
+		if (ac == 4 && ac != 3)
 		{
+			if (!ft_isnumeric_str(av[2]) || !ft_isnumeric_str(av[3]))
+				(print_usage(), quit_fractol(fractol, ""));
 			fractol->c_r = ft_atod(av[2]);
 			fractol->c_i = ft_atod(av[3]);
 		}
@@ -56,6 +58,7 @@ int	main(int ac, char **av)
 	draw(&fractol);
 	mlx_key_hook(fractol.window, key_press, &fractol);
 	mlx_mouse_hook(fractol.window, mouse_press, &fractol);
+	mlx_hook(fractol.window, 17, 0, cross_press, &fractol);
 	mlx_loop(fractol.mlx);
 	quit_fractol(&fractol, "done");
 	return (0);

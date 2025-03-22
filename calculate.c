@@ -28,7 +28,7 @@ void	calculate(t_fractol *ptr)
 		i++;
 	}
 	if (i == MAX_ITER)
-		color(ptr, 0x000000); // Eğer maksimum iterasyona ulaşılırsa, siyah renk
+		color(ptr, 0x000000);
 	else
 		color(ptr, 0xFF76c56e * i);
 }

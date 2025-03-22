@@ -6,7 +6,7 @@
 /*   By: fatmoztu <fatmoztu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:56:58 by fatmoztu          #+#    #+#             */
-/*   Updated: 2025/03/17 18:58:50 by fatmoztu         ###   ########.fr       */
+/*   Updated: 2025/03/19 18:34:50 by fatmoztu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ double	ft_atod(char *s)
 
 void	*ft_memset(void *b, int c, size_t len)
 {
-	unsigned char *p;
+	unsigned char	*p;
 
 	p = (unsigned char *)b;
 	while (len > 0)
@@ -71,4 +71,32 @@ void	*ft_memset(void *b, int c, size_t len)
 		len--;
 	}
 	return (b);
+}
+
+int	ft_isnumeric_str(char *str)
+{
+	int	i;
+	int	dot_count;
+
+	i = 0;
+	dot_count = 0;
+	if (str[0] == '-' || str[0] == '+')
+		i++;
+	if (!str[i])
+		return (0);
+	while (str[i])
+	{
+		if (str[i] == '.')
+		{
+			if (dot_count > 0)
+				return (0);
+			dot_count++;
+		}
+		else if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	if (dot_count == 1 && i == 1)
+		return (0);
+	return (1);
 }
