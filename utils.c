@@ -6,7 +6,7 @@
 /*   By: fatmoztu <fatmoztu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:56:58 by fatmoztu          #+#    #+#             */
-/*   Updated: 2025/03/19 18:34:50 by fatmoztu         ###   ########.fr       */
+/*   Updated: 2025/03/25 00:13:16 by fatmoztu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,6 @@ double	ft_atod(char *s)
 		num = num + (*s++ - 48) * dec;
 	}
 	return (num * sign);
-}
-
-void	*ft_memset(void *b, int c, size_t len)
-{
-	unsigned char	*p;
-
-	p = (unsigned char *)b;
-	while (len > 0)
-	{
-		p[len - 1] = c;
-		len--;
-	}
-	return (b);
 }
 
 int	ft_isnumeric_str(char *str)
